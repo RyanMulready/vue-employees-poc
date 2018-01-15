@@ -1,7 +1,7 @@
 <template>
  <div class="row justify-center">
     <q-card inline class="bigger" style="width: 500px">
-      <q-card-title>{{ 'Login to Building Engines' | translate }}</q-card-title>
+      <q-card-title>{{ 'Login' | translate }}</q-card-title>
         <q-card-main>
           <q-field :error="$v.loginRequest.user.$error" :error-label="$t('Please enter a username')">
             <q-input v-model="loginRequest.user" :stack-label="$t('username')" @blur="$v.loginRequest.user.$touch" />
