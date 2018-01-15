@@ -18,13 +18,6 @@
         </template>
       </q-data-table>
     </div>
-    <pageactions>
-        <router-link to="/"
-          <q-fab-action slot="action" color="primary" icon="add"  @click="$router.push({name: 'employeesItem', params: { id: 'new' }})" >
-            <q-tooltip anchor="top middle" self="bottom right">{{ $t('new') }} {{ $t('employee') }}</q-tooltip>
-          </q-fab-action>
-        </router-link>
-    </pageactions>
   </div>
 </template>
 <script>

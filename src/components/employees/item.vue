@@ -124,14 +124,6 @@
       <q-btn class="float-right" color="primary" @click="submitItem">{{'save' | translate}}</q-btn>
       <br /><br />
     </div>
-
-    <pageactions v-if="$route.params.id !== 'new'">
-        <router-link to="/"
-          <q-fab-action slot="action" color="primary" icon="add"  @click="$router.push({name: 'employeesItem', params: { id: 'new' }})" >
-            <q-tooltip anchor="top middle" self="bottom right">{{ $t('new') }} {{ $t('employee') }}</q-tooltip>
-          </q-fab-action>
-        </router-link>
-    </pageactions>
   </div>
 </template>
 

@@ -1,4 +1,4 @@
-import store from '../store'
+// import store from '../store'
 
 const location = {
     install (poptions) {
@@ -14,7 +14,7 @@ function requestLocation (options) {
 }
 
 function successLocation (location) {
-    store.dispatch('user/updateLocationData', location)
+   // store.dispatch('user/updateLocationData', location)
 }
 
 function errorLocation (error) {
