@@ -2,9 +2,11 @@
   <div>
     <breadcrumbs>
         <li slot="link">
-          <a>
-            <q-icon name="wc" /> {{ $t('employees') }}
-          </a>
+          <router-link to="/employees">
+            <a>
+              <q-icon name="wc" /> {{ $t('employees') }}
+            </a>
+          </router-link>
         </li>
         <li slot="link">
           <a>
@@ -39,7 +41,7 @@
             </q-field>
 
             <q-field :error="$v.employeeData.email.$error" :error-label="$t('please type a valid email')">
-               <q-input v-model="employeeData.email" type="text" :stack-label="$t('last name')" />
+               <q-input v-model="employeeData.email" type="text" :stack-label="$t('email')" />
             </q-field>
 
             <br />
@@ -105,19 +107,7 @@
             <br /><h6>{{'permissions' | translate}}</h6>
 
             <q-field>
-              <q-toggle v-model="employeeData.permissions.wo" :label="$t('work orders')" />
-            </q-field>
-
-            <q-field>
-              <q-toggle v-model="employeeData.permissions.visitor" :label="$t('visitors')" />
-            </q-field>
-
-            <q-field>
               <q-toggle v-model="employeeData.permissions.employees" :label="$t('employees')" />
-            </q-field>
-
-            <q-field>
-              <q-toggle v-model="employeeData.permissions.rs" :label="$t('resource schedule')" />
             </q-field>
         </div>
       </div>

@@ -11,7 +11,7 @@
     <div v-if="metaData.columns.employeescolumns.length > 0">
       <q-data-table :data="employeesArray" :config="config" :columns="metaData.columns.employeescolumns" @refresh="refresh">
         <template slot="col-name" slot-scope="cell">
-           <router-link :to="{ name: 'employeesItem', params: { id: cell.row.id }}">{{ cell.row.firstname }}, {{ cell.row.firstname }}</router-link>
+           <router-link :to="{ name: 'employeesItem', params: { id: cell.row.id }}">{{ cell.row.firstname }}, {{ cell.row.lastname }}</router-link>
         </template>
         <template slot="col-login" slot-scope="cell">
           {{ cell.data | dateFilter }}

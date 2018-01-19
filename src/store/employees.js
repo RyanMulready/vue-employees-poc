@@ -25,8 +25,8 @@ let state = {
               })
         },
         postEmployeeData: ({ commit, state }, obj) => {
-            api.post('employeeslist' + '/' + obj.id, JSON.stringify(obj)).then((data) => {
-                commit('setEmployeeData', { obj: obj })
+            api.patch('employeeslist' + '/' + obj.id, obj).then((data) => {
+                commit('setEmployeeData', { obj: data })
             }).catch(function (error) {
                 console.log(error)
               })

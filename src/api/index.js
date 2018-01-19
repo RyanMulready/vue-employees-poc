@@ -1,7 +1,6 @@
 import axios from 'axios'
 import user from '../store/user'
-const baseuri = 'http://localhost:3001/'
-const offset = 50000
+const baseuri = 'http://localhost:10001'
 import notifications from '../api/notifications'
 
 const http = axios.create({
@@ -21,29 +20,42 @@ const http = axios.create({
         }
         notifications.displayNotification(msg)
     },
+    throwSuccess = function (success, url) {
+        const msg = {
+            'name': 'NetworkSuccess',
+            'data': {
+              'type': 'error',
+              'notify': true,
+              'body': 'Server Responded With Success\n' + url
+            }
+        }
+        notifications.displayNotification(msg)
+    },
     get = function (url) {
         return new Promise(function (resolve, reject) {
-            const storage = JSON.parse(localStorage.getItem(url))
-            const timestamp = localStorage.getItem(url + '_timestamp')
-
-            if ((storage || !timestamp) && (Date.now() < timestamp)) {
-                resolve(storage)
-            }
-            else {
-                http.get(url).then((response) => {
-                    localStorage.setItem(url, JSON.stringify(response.data))
-                    localStorage.setItem(url + '_timestamp', Date.now() + offset)
-                    resolve(response.data)
-                }, (err) => {
-                    throwError(err, url)
-                    reject(err, url)
-                })
-            }
+            http.get(url).then((response) => {
+                resolve(response.data)
+            }, (err) => {
+                throwError(err, url)
+                reject(err, url)
+            })
         })
     },
     post = function (url, data) {
         return new Promise(function (resolve, reject) {
             http.post(url, data).then((response) => {
+                throwSuccess(url)
+                resolve(response.data)
+            }, (err) => {
+                throwError(err, url)
+                reject(err, url)
+            })
+        })
+    },
+    patch = function (url, data) {
+        return new Promise(function (resolve, reject) {
+            http.patch(url, data).then((response) => {
+                throwSuccess(url)
                 resolve(response.data)
             }, (err) => {
                 throwError(err, url)
@@ -54,6 +66,7 @@ const http = axios.create({
     remove = function (url, data) {
         return new Promise(function (resolve, reject) {
             http.delete(url, data).then((response) => {
+                throwSuccess(url)
                 resolve(response.data)
             }, (err) => {
                 throwError(err, url)
@@ -73,6 +86,7 @@ export default {
     http,
     get,
     post,
+    patch,
     remove,
     clear,
     throwError

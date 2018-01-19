@@ -6,7 +6,7 @@
   "scripts": {
     "generate-mock-data": "babel-node build/generateMockData",
     "prestart-mockapi": "npm run generate-mock-data",
-    "start-mockapi": "json-server --watch ./db.json --port 3001",
+    "start-mockapi": "json-server --watch ./db.json --port 10001",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
